@@ -1,19 +1,14 @@
 package datos;
-import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
-import java.util.List;
-import  java.util.Scanner;
+import java.io.BufferedReader;
 
-
-public class LectorArchivo implements IFuenteDatos {
-    private String nombreArchivo = ("D:\\Nueva carpeta\\Desktop\\clases 2022-2\\Ing de software\\archivosPrueba\\tiendas.txt");
-
-    public LectorArchivo(String nombreArchivo){
+public class ensayoCargaArchivos {
+    public static void main (String[] args){
         FileReader archivo;
         BufferedReader lector;
+
         try {
-            archivo = new FileReader(nombreArchivo);
+            archivo = new FileReader("D:\\Nueva carpeta\\Desktop\\clases 2022-2\\Ing de software\\archivosPrueba\\tiendas.txt");
             if (archivo.ready()){
                 lector = new BufferedReader(archivo);
                 String cadena;
@@ -26,11 +21,5 @@ public class LectorArchivo implements IFuenteDatos {
         }catch (Exception e){
             System.out.println("Error= "+e.getMessage());
         }
-    }
-
-    @Override
-    public List<String[]> obtenerDatosBase() {
-
-        return null;
     }
 }

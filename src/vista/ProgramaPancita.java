@@ -56,6 +56,7 @@ public class ProgramaPancita {
                         this.hacerRecorrido();
                     case 3:
                         System.out.println("Carga de productos");
+                        break;
                     default:
                         System.out.println("Por favor ingrse una opcion valida");
                 }
