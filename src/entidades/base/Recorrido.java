@@ -27,16 +27,24 @@ public class Recorrido {
         this.tiendas.add(tienda);
     }
 
-    public void addProducto(Producto producto){
-        if (buscarProducto(producto.getCodigo()) != null){
-            throw new IllegalArgumentException();
-        }
-        this.productos.put(producto.getCodigo(),producto);
-    }
-    //public void addProducto(Producto producto){
-      ///  productos.put(producto.getCodigo(),producto);
+   // public void addProducto(Producto producto){
+     //   if (buscarProducto(producto.getCodigo()) != null){
+       //     throw new IllegalArgumentException();
+       // }
+        //this.productos.put(producto.getCodigo(),producto);
     //}
+    public void addProducto(Producto producto){
+      productos.put(producto.getCodigo(),producto);
+    }
 
+    //public Producto buscarProducto(String codigo){
+      //  for(Producto producto: productos){
+        //    if(producto.getCodigo().equals(codigo)){
+          //      return producto;
+           // }
+       // }
+        //return null;
+    //}
     public Producto buscarProducto(String codigo){
         return productos.get(codigo);
     }

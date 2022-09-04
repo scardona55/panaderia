@@ -24,6 +24,8 @@ public class ControlRecorrido {
         cargador.cargarDatosIniciales();
     }
 
+    
+
 
     // COMPLETAR LOS MÉTODOS QUE FALTAN
 

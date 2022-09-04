@@ -19,5 +19,4 @@ public interface IFuenteDatos {
      */
     public abstract List<String[]> obtenerDatosBase();
 
-    //public abstract List<String[]> obtenerDatosBaseProductos();
 }
