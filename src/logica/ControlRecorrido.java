@@ -83,8 +83,11 @@ public class ControlRecorrido {
 
     }
 
-    //public String
 
+    /**public obtenerDetallesOrdenados <List<String>> getObjectType(){
+
+    }
+    **/
 
 
 

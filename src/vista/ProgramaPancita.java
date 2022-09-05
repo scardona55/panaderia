@@ -51,17 +51,31 @@ public class ProgramaPancita {
                         System.out.println("Muchas gracias, vuelva pronto");
                         salir = true;
                         break;
+                    /**
+                     * Opcion para salir del sistema
+                     */
                     case 1:
                         System.out.println("Carga de datos");
                         this.control.cargarDatosIniciales();
                         System.out.println("Se han cargado los datos");
                         break;
+                    /**
+                     * Opcion para cargar los datos de la tienda
+                     */
                     case 2:
                         System.out.println();
                         this.hacerRecorrido();
                         break;
+                    /**
+                     * Opcion para hacer un recorrido cuando ya esten los datos
+                     */
                     case 3:
                         System.out.println("Carga de productos");
+                        /**
+                         * Opcion para la carga de datos de los productos
+                         *
+                         */
+                        this.control.cargarDatosIniciales();
                         break;
                     case 4:
                         this.procesarUnaOrden();
@@ -119,8 +133,8 @@ public class ProgramaPancita {
 
             System.out.println(this.control.obtenerDatosTienda(codigo));
         } else {
-            System.out.println("NO existe");
-
+            System.out.println("No existe una tienda con dicho codigo, por favor revise");
+            System.out.println("Volviendo al menu principal");
         }
         // PRIMERO PEDIR EL CÓDIGO DE LA TIENDA
         // Y VERIFICAR SI EXISTE.

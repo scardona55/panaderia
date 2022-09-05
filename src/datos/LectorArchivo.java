@@ -8,9 +8,19 @@ import  java.util.Scanner;
 
 
 public class LectorArchivo implements IFuenteDatos {
+
+    /**
+     * Cramos un string donde nos llevara a la ubicacion de nuestro
+     * archivo
+     */
     private String nombreArchivo = ("D:\\Nueva carpeta\\Desktop\\clases 2022-2\\Ing de software\\archivosPrueba\\tiendas.txt");
 
     public LectorArchivo(String nombreArchivo){
+        /**
+         * Nuestra funcion que nos permite cargar el archivo,
+         * separar los datos que esten por una coma
+         * e informarnos si hay un error en el archivo.
+         */
         FileReader archivo;
         BufferedReader lector;
         try {
@@ -39,14 +49,14 @@ public class LectorArchivo implements IFuenteDatos {
             List<String[]> tiendas = new ArrayList<>();
 
 
+
+        }else{
+
         }
-        String[] producto1 = {"1512","Cicharon dulce","15000"};
-        String[] producto2 = {"1513","Pan dulce", "18000"};
-        String[] producto3 = {"15-14","Pan agridulce", "1200"};
         List<String[]> productos = new ArrayList<>();
-        productos.add(producto1);
+        /**productos.add(producto1);
         productos.add(producto2);
-        productos.add(producto3);
+        productos.add(producto3);**/
         return productos;
 
     }
