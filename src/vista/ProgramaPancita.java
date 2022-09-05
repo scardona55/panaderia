@@ -3,6 +3,7 @@ package vista;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import entidades.base.Tienda;
 import logica.ControlRecorrido;
 
 /**
@@ -28,14 +29,18 @@ public class ProgramaPancita {
      * para hacer el recorrido.
      */
     public void iniciar() {
+        /**
+         * Creamos el menu de usuario para el progrma pancia
+         * con sus respectivas opciones para ser mas facil e intuitivo para los usuarios
+         */
         System.out.println("+++Bievenido a Panaderia Pancita+++");
         Scanner sc = new Scanner(System.in);
         boolean salir = false;
         while(!salir){
             System.out.println("Menu: ");
-            System.out.println("1.Cargar Datos");
+            System.out.println("1.Cargar Datos Tiendas");
             System.out.println("2.Hacer recorrido");
-            System.out.println("3.Cargar productos");
+            System.out.println("3.Cargar Datos productos");
             System.out.println("0. Salir");
 
             try{
@@ -54,16 +59,21 @@ public class ProgramaPancita {
                     case 2:
                         System.out.println();
                         this.hacerRecorrido();
+                        break;
                     case 3:
                         System.out.println("Carga de productos");
                         break;
+                    case 4:
+                        this.procesarUnaOrden();
                     default:
-                        System.out.println("Por favor ingrse una opcion valida");
+                        System.out.println("Por favor ingrese una opcion valida");
                 }
             }catch (InputMismatchException e){
                 System.out.println("Se debe insertar un numero");
                 sc.next();
 
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
         }
 
@@ -73,18 +83,19 @@ public class ProgramaPancita {
      * Es el ciclo de control general del programa,
      * para saber si hay más ordenes o termina.
      */
-    public void hacerRecorrido() {
+    public void hacerRecorrido() throws Exception {
         Scanner consola = new Scanner(System.in);
         String respuesta = "S";
-        while (respuesta.equals("S")) {
-            System.out.println("¿Desea crear orden de pedido (S/N)?");
+            System.out.println("¿de verdad desea crear una orden de pedido (S/N)?");
             respuesta = consola.next();
             if (respuesta.equals("S")) {
                 this.procesarUnaOrden();
-            }
+            }else{
+                System.out.println("Gracias");
+
         }
-        System.out.println("Fin del programa. Muchas gracias.");
-        consola.close();
+        //System.out.println("Fin del programa. Muchas gracias.");
+        //consola.close();
     }
 
     /**
@@ -92,9 +103,25 @@ public class ProgramaPancita {
      * de pedido, mostrarla y pedir la aceptación
      * del usuario.
      */
-    private void procesarUnaOrden() {
+    private void procesarUnaOrden() throws Exception {
         // COMPLETAR:
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Por favor ingrese el codigo de la tienda: ");
+        String codigo = sc.nextLine();
+        System.out.println("Codigo de la tienda: " + codigo);
+        boolean tienda = this.control.existeTienda(codigo);
+        String nombreArchivoProductos = null;
+        if (tienda == true) {
+            System.out.println("Existe");
+            //System.out.println("Ingrese el nombre del archivo de los productos ");
+            //nombreArchivoProductos = sc.nextLine();
+            //this.control.crearOrden(nombreArchivoProductos, codigo);
 
+            System.out.println(this.control.obtenerDatosTienda(codigo));
+        } else {
+            System.out.println("NO existe");
+
+        }
         // PRIMERO PEDIR EL CÓDIGO DE LA TIENDA
         // Y VERIFICAR SI EXISTE.
 

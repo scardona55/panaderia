@@ -2,6 +2,7 @@ package datos;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.List;
 import  java.util.Scanner;
 
@@ -18,7 +19,8 @@ public class LectorArchivo implements IFuenteDatos {
                 lector = new BufferedReader(archivo);
                 String cadena;
                 while ((cadena = lector.readLine()) != null){
-                    System.out.println(cadena);
+                    String[] datos = cadena.split(",");
+                    System.out.println(datos);
                 }
             }else{
                 System.out.println("Hay un error con el archivo ");
@@ -30,7 +32,22 @@ public class LectorArchivo implements IFuenteDatos {
 
     @Override
     public List<String[]> obtenerDatosBase() {
+        System.out.println("Los datos cargados son de tiendas o de productos");
+        Scanner sc = new Scanner(System.in);
+        String opc = sc.nextLine();
+        if(opc =="tienda"){
+            List<String[]> tiendas = new ArrayList<>();
 
-        return null;
+
+        }
+        String[] producto1 = {"1512","Cicharon dulce","15000"};
+        String[] producto2 = {"1513","Pan dulce", "18000"};
+        String[] producto3 = {"15-14","Pan agridulce", "1200"};
+        List<String[]> productos = new ArrayList<>();
+        productos.add(producto1);
+        productos.add(producto2);
+        productos.add(producto3);
+        return productos;
+
     }
 }
