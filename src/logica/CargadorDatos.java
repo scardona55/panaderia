@@ -1,9 +1,11 @@
 package logica;
 import java.util.List;
+import java.util.Scanner;
 
 import datos.DatosPruebaProductos;
 import datos.DatosPruebaTiendas;
 import datos.IFuenteDatos;
+import datos.LectorArchivo;
 import entidades.base.Producto;
 import entidades.base.Recorrido;
 import entidades.base.Tienda;
@@ -29,19 +31,41 @@ public class CargadorDatos {
      * tiendas y productos.
      */
     public void cargarDatosIniciales() {
-        // SE DEBE CAMBIAR ESTA FUENTE, QUE ES DE PRUEBA
-        // POR UNA QUE LEA LOS DATOS DE UN ARCHIVO.
-        IFuenteDatos fuenteDatosTiendas = new DatosPruebaTiendas();
+        System.out.println("Se cargaran los datos iniciales del sistema ");
+        System.out.println("Cargando datos de tienda....");
+        IFuenteDatos datosInicialesTienda = new DatosPruebaTiendas();
+        List<String[]> datosBaseTienda = datosInicialesTienda.obtenerDatosBase();
+        if (datosBaseTienda == null){
+            System.out.println("Error al cargar los archivos de tienda");
+        }else{
+            System.out.println("Los datos de tienda han sido cargados con exito  ");
+            this.cargarDatosTiendas(datosBaseTienda);
+            System.out.println("..........");
+        }
+        System.out.println("Cargando los datos de productos...");
+        IFuenteDatos datosInicialesProductos = new DatosPruebaProductos();
+        List<String[]> datosBaseProductos = datosInicialesProductos.obtenerDatosBase();
+        if(datosBaseProductos == null){
+            System.out.println("Error al cargar los datos de productos ");
+        }else{
+            System.out.println("Los datos de productos han sido cargados con exito");
+            System.out.println("......");
+            this.cargarDatosProductos(datosBaseProductos);
+        }
+    }
 
-        List<String[]> datosBaseTiendas = fuenteDatosTiendas.obtenerDatosBase();
-        this.cargarDatosTiendas(datosBaseTiendas);
+    public void cargarDatosArchivo(){
+        System.out.println("Dea cargar datos en tienda o en producto");
+        Scanner sc = new Scanner(System.in);
+        String opcion = sc.nextLine();
+        if(opcion == "T"){
+            IFuenteDatos datosTienda = new LectorArchivo();
+            List<String[]> datosT = datosTienda.obtenerDatosBase();
+        }else if (opcion == "P"){
 
-        // FALTA CARGAR LOS DATOS DE LOS PRODUCTOS:
-        // PRIMERO HACERLO CON LA CLASE DE PRUEBA,
-        // Y LUEGO CON LA QUE LEE DE UN ARCHIVO.
-        IFuenteDatos fuenteDatosProductos = new DatosPruebaProductos(); // CAMBIAR POR EL OBJETO CORRESPONDIENTE
-        List<String[]> datosBaseProductos = fuenteDatosProductos.obtenerDatosBase();
-        this.cargarDatosProductos(datosBaseProductos);
+        }else{
+            System.out.println("ingrese una opcion valida");
+        }
     }
 
     /**

@@ -42,9 +42,9 @@ public class ProgramaPancita {
         boolean salir = false;
         while(!salir){
             System.out.println("Menu: ");
-            System.out.println("1.Cargar Datos Tiendas");
-            System.out.println("2.Hacer recorrido");
-            System.out.println("3.Cargar Datos productos");
+            System.out.println("1.Cargar Datos Iniciales");
+            System.out.println("2.Cargar archivo de datos");
+            System.out.println("3.Hacer recorrido");
             System.out.println("0. Salir");
 
             try{
@@ -59,28 +59,25 @@ public class ProgramaPancita {
                      * Opcion para salir del sistema
                      */
                     case 1:
-                        System.out.println("Carga de datos");
+                        System.out.println("Carga de datos iniciales");
                         this.control.cargarDatosIniciales();
-                        System.out.println("Se han cargado los datos");
+                        System.out.println("Se han cargado los datos iniciales con exito");
                         break;
                     /**
-                     * Opcion para cargar los datos de la tienda
+                     * Opcion para cargar los datos de los archivos de prueba
                      */
                     case 2:
+                        System.out.println("Carga de archivos ");
+                        this.control.cargarDatosArchivo();
+                        System.out.println("Se han cargado los datos con exito");
+                        break;
+                    case 3:
                         System.out.println();
                         this.hacerRecorrido();
                         break;
                     /**
                      * Opcion para hacer un recorrido cuando ya esten los datos
                      */
-                    case 3:
-                        System.out.println("Carga de productos");
-                        /**
-                         * Opcion para la carga de datos de los productos
-                         *
-                         */
-                        this.control.cargarDatosIniciales();
-                        break;
                     case 4:
                         this.procesarUnaOrden();
                     case 5:
@@ -108,16 +105,17 @@ public class ProgramaPancita {
     public void hacerRecorrido() throws Exception {
         Scanner consola = new Scanner(System.in);
         String respuesta = "S";
-            System.out.println("¿de verdad desea crear una orden de pedido (S/N)?");
+        while (respuesta.equals("S")){
+            System.out.println("¿desea ingresar una orden de pedido (S/N)?");
             respuesta = consola.next();
             if (respuesta.equals("S")) {
                 this.procesarUnaOrden();
             }else{
                 System.out.println("Gracias");
+                consola.close();
+        }
 
         }
-        //System.out.println("Fin del programa. Muchas gracias.");
-        //consola.close();
     }
 
     /**

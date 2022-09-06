@@ -31,6 +31,11 @@ public class ControlRecorrido {
         cargador.cargarDatosIniciales();
     }
 
+    public void cargarDatosArchivo(){
+        CargadorDatos cargador = new CargadorDatos(recorrido);
+        cargador.cargarDatosArchivo();
+    }
+
 
     public boolean existeTienda(String codigoTienda){
 
