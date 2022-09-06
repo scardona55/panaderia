@@ -3,6 +3,7 @@ package vista;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import datos.LectorArchivo;
 import entidades.base.Tienda;
 import logica.ControlRecorrido;
 
@@ -20,8 +21,11 @@ import logica.ControlRecorrido;
 public class ProgramaPancita {
     private ControlRecorrido control;
 
+    private LectorArchivo lector;
+
     public ProgramaPancita() {
         this.control = new ControlRecorrido();
+        this.lector = new LectorArchivo();
     }
 
     /**
@@ -79,6 +83,10 @@ public class ProgramaPancita {
                         break;
                     case 4:
                         this.procesarUnaOrden();
+                    case 5:
+                        String nombreArcivo = ("D:\\Nueva carpeta\\Desktop\\clases 2022-2\\Ing de software\\archivosPrueba\\tiendas.txt");
+                        this.lector.LectorArchivo(nombreArcivo);
+                        break;
                     default:
                         System.out.println("Por favor ingrese una opcion valida");
                 }

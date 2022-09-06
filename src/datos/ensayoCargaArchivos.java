@@ -17,9 +17,10 @@ public class ensayoCargaArchivos {
             if (archivo.ready()){
                 lector = new BufferedReader(archivo);
                 String cadena;
+                String coma = ",";
                 while ((cadena = lector.readLine()) != null){
-                    String[] datos = cadena.split(",");
-                    System.out.println(datos);
+                    String[] datos = cadena.split(coma);
+                    System.out.println(datos[0]);
                 }
             }else{
                 System.out.println("Hay un error con el archivo ");

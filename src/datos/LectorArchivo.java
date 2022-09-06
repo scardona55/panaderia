@@ -13,9 +13,9 @@ public class LectorArchivo implements IFuenteDatos {
      * Cramos un string donde nos llevara a la ubicacion de nuestro
      * archivo
      */
-    private String nombreArchivo = ("D:\\Nueva carpeta\\Desktop\\clases 2022-2\\Ing de software\\archivosPrueba\\tiendas.txt");
+    //private String nombreArchivo = ("D:\\Nueva carpeta\\Desktop\\clases 2022-2\\Ing de software\\archivosPrueba\\tiendas.txt");
 
-    public LectorArchivo(String nombreArchivo){
+    public String[] LectorArchivo(String nombreArchivo) {
         /**
          * Nuestra funcion que nos permite cargar el archivo,
          * separar los datos que esten por una coma
@@ -23,25 +23,29 @@ public class LectorArchivo implements IFuenteDatos {
          */
         FileReader archivo;
         BufferedReader lector;
+        String[] datos = new String[0];
         try {
             archivo = new FileReader(nombreArchivo);
-            if (archivo.ready()){
+            if (archivo.ready()) {
                 lector = new BufferedReader(archivo);
                 String cadena;
-                while ((cadena = lector.readLine()) != null){
-                    String[] datos = cadena.split(",");
-                    System.out.println(datos);
+                while ((cadena = lector.readLine()) != null) {
+                    datos = cadena.split(",");
                 }
-            }else{
+            } else {
                 System.out.println("Hay un error con el archivo ");
             }
-        }catch (Exception e){
-            System.out.println("Error= "+e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error= " + e.getMessage());
         }
+        System.out.println(datos);
+        return datos;
+
     }
 
     @Override
     public List<String[]> obtenerDatosBase() {
+
         System.out.println("Los datos cargados son de tiendas o de productos");
         Scanner sc = new Scanner(System.in);
         String opc = sc.nextLine();
