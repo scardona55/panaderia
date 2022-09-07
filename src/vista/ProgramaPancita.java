@@ -2,7 +2,6 @@ package vista;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
 import datos.LectorArchivo;
 import entidades.base.Tienda;
 import logica.ControlRecorrido;

@@ -9,12 +9,16 @@ import  java.util.Scanner;
 
 public class LectorArchivo implements IFuenteDatos {
     ArrayList<String> datos1 = new ArrayList<String>();
+    public String nombreArchivo;
+    public List<String[]>datosBase = new ArrayList<>();
+
     /**
      * Cramos un string donde nos llevara a la ubicacion de nuestro
      * archivo
      */
 
     public ArrayList<String> LectorArchivo(String nombreArchivo) {
+        this.nombreArchivo=nombreArchivo;
         /**
          * Nuestra funcion que nos permite cargar el archivo,
          * separar los datos que esten por una coma

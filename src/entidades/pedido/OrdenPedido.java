@@ -54,7 +54,7 @@ public class OrdenPedido {
      * desea pedirse de ese producto, para que quede
      * en el pedido.
      */
-    public void addDetalle(Producto producto, int cantidadPedida){
+    public static void addDetalle(Producto producto, int cantidadPedida){
         DetallePedido detalle = new DetallePedido(producto, cantidadPedida);
         detalles.add(detalle);
     }

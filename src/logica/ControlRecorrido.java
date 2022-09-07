@@ -2,9 +2,11 @@ package logica;
 
 import datos.DatosPruebaTiendas;
 import datos.EscritorArchivoOrdenes;
+import datos.LectorArchivo;
+import entidades.base.Producto;
 import entidades.base.Recorrido;
+import entidades.base.Tienda;
 import entidades.pedido.OrdenPedido;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -16,6 +18,7 @@ import java.util.List;
  */
 public class ControlRecorrido {
     private Recorrido recorrido;
+    private OrdenPedido ordenEnproceso;
     private OrdenPedido ordenEnProceso;
 
     DatosPruebaTiendas t1 = new DatosPruebaTiendas();
@@ -73,7 +76,6 @@ public class ControlRecorrido {
                     continue;
                 }
             }
-
         }else{
             //tirar error
             throw new Exception("Tienda no encontrada");
@@ -82,20 +84,33 @@ public class ControlRecorrido {
     }
 
     public void crearOrden(String nombreArchivoProducto, String codigoTienda){
+        Tienda tienda = recorrido.buscarTienda(codigoTienda);
+        ordenEnProceso = new OrdenPedido(tienda);
+        /**
+         * asignamos los valores y leemos el archivo
+         */
+        LectorArchivo archivo = new LectorArchivo(nombreArchivoProducto);
+        List<String[]> productos = archivo.obtenerDatosBase();
+        for(String[] producto:productos){
+            System.out.println("Codigo: "+ producto[0]+" Cantidad: "+producto[1]);
+            crearDetalle(this.ordenEnProceso, producto);
+        }
+
 
     }
 
     private void crearDetalle(OrdenPedido orden, String[] datosBaseDetalle){
+        Producto producto =  recorrido.buscarProducto(datosBaseDetalle[0]);
+        if(producto!= null){
+            OrdenPedido.addDetalle(producto, Integer.parseInt(datosBaseDetalle[1]));
+        }
 
     }
 
-
-    /**public obtenerDetallesOrdenados <List<String>> getObjectType(){
-
+    public  List<String> obtenerDetallerOrdenados(){
+        List<String> detalles = ordenEnProceso.getDetallesOrdenados();
+        return detalles;
     }
-    **/
-
-
 
     // COMPLETAR LOS MÉTODOS QUE FALTAN
 
