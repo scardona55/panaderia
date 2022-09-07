@@ -17,7 +17,7 @@ import entidades.base.Tienda;
 public class OrdenPedido {
     private Tienda tienda;
     private LocalDate fecha;
-    private List<DetallePedido> detalles;
+    private static List<DetallePedido> detalles;
 
     public OrdenPedido(Tienda tienda) {
         this.tienda = tienda;

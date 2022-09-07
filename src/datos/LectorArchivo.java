@@ -42,6 +42,7 @@ public class LectorArchivo implements IFuenteDatos {
             System.out.println("Error= " + e.getMessage());
         }
         datos1 = datos;
+        System.out.println(datos);
         return datos;
     }
 
