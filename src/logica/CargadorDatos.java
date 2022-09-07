@@ -1,7 +1,6 @@
 package logica;
 import java.util.List;
 import java.util.Scanner;
-
 import datos.DatosPruebaProductos;
 import datos.DatosPruebaTiendas;
 import datos.IFuenteDatos;
@@ -9,7 +8,6 @@ import datos.LectorArchivo;
 import entidades.base.Producto;
 import entidades.base.Recorrido;
 import entidades.base.Tienda;
-
 /**
  * Se encarga de crear los objetos a partir
  * de arreglos de cadenas de texto con la información
@@ -54,8 +52,8 @@ public class CargadorDatos {
         }
     }
 
-    public void cargarDatosArchivo(){
-        System.out.println("Dea cargar datos en tienda o en producto");
+    /**public void cargarDatosArchivo(){
+        System.out.println("Desea cargar datos en tienda o en producto");
         Scanner sc = new Scanner(System.in);
         String opcion = sc.nextLine();
         if(opcion == "T"){
@@ -67,6 +65,7 @@ public class CargadorDatos {
             System.out.println("ingrese una opcion valida");
         }
     }
+     **/
 
     /**
      * A partir de los datos base (cadenas de texto),
@@ -95,6 +94,5 @@ public class CargadorDatos {
             Producto producto = new Producto(codigo, nombre, valorUnitario);
             this.recorrido.addProducto(producto);
         }
-        // FALTA COMPLETAR EL CÓDIGO
     }
 }

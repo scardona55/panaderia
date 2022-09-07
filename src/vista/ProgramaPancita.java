@@ -43,7 +43,7 @@ public class ProgramaPancita {
         while(!salir){
             System.out.println("Menu: ");
             System.out.println("1.Cargar Datos Iniciales");
-            System.out.println("2.Cargar archivo de datos");
+            System.out.println("2.Verificar existencia tienda");
             System.out.println("3.Hacer recorrido");
             System.out.println("0. Salir");
 
@@ -67,10 +67,18 @@ public class ProgramaPancita {
                      * Opcion para cargar los datos de los archivos de prueba
                      */
                     case 2:
-                        System.out.println("Carga de archivos ");
-                        this.control.cargarDatosArchivo();
-                        System.out.println("Se han cargado los datos con exito");
+                        System.out.println("Por favor ingrese el codigo de la tienda para verificar si existe");
+                        String tieCod = sc.nextLine();
+                        boolean exist = this.control.existeTienda(tieCod);
+                        if(exist == true){
+                            System.out.println("La tienda ingresada: "+ tieCod+" existe ");
+                        }else{
+                            System.out.println("La tienda ingresada: "+ tieCod+" no existe");
+                        }
                         break;
+                        //System.out.println("Carga de archivos ");
+                        //this.control.cargarDatosArchivo();
+                        //System.out.println("Se han cargado los datos con exito");
                     case 3:
                         System.out.println();
                         this.hacerRecorrido();
@@ -83,6 +91,10 @@ public class ProgramaPancita {
                     case 5:
                         String nombreArcivo = ("D:\\Nueva carpeta\\Desktop\\clases 2022-2\\Ing de software\\archivosPrueba\\tiendas.txt");
                         this.lector.LectorArchivo(nombreArcivo);
+                        break;
+                    case 6:
+                        this.lector.LectorArchivo("D:\\Nueva carpeta\\Desktop\\clases 2022-2\\Ing de software\\archivosPrueba\\tiendas.txt");
+                        this.lector.obtenerDatosBase();
                         break;
                     default:
                         System.out.println("Por favor ingrese una opcion valida");
@@ -130,14 +142,19 @@ public class ProgramaPancita {
         String codigo = sc.nextLine();
         System.out.println("Codigo de la tienda: " + codigo);
         boolean tienda = this.control.existeTienda(codigo);
-        String nombreArchivoProductos = null;
         if (tienda == true) {
             System.out.println("Existe");
-            //System.out.println("Ingrese el nombre del archivo de los productos ");
-            //nombreArchivoProductos = sc.nextLine();
-            //this.control.crearOrden(nombreArchivoProductos, codigo);
-
-            System.out.println(this.control.obtenerDatosTienda(codigo));
+            System.out.println(control.obtenerDatosTienda(codigo));
+            System.out.println("Ingrese la ruta del archivo de los productos a pedir");
+            String ruta = sc.next();
+            control.crearOrden(ruta, codigo);
+            System.out.println("¿Desea realizar la orden?       S/N");
+            String ord = sc.nextLine();
+            if(ord.equals("S")){
+                control.guardarOrden();
+            }else{
+                System.out.println("Orden Cancelada.");
+            }
         } else {
             System.out.println("No existe una tienda con dicho codigo, por favor revise");
             System.out.println("Volviendo al menu principal");
